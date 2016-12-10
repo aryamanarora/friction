@@ -5,18 +5,18 @@ library(ggplot2)
 friction <- read.csv("Friction-Exam.csv", header = TRUE, sep = ",")
 
 # plot 1 (scatter, mass vs. friction)
-ggplot(friction, aes(x = (Actual.Weight/1000), y = Average,
+ggplot(friction, aes(x = (Actual.Weight/1000)*9.81, y = Average,
     shape = Surface)) + geom_point() +
     geom_line(stat="smooth", method = "lm",
-    alpha = 0.3, fullrange = TRUE, se = 0.2) + xlim(0, 0.6) +
-    xlab("Mass (kilograms)") + ylab("Average Friction (newtons)") + 
+    alpha = 0.3, fullrange = TRUE, se = 0.2) + xlim(0, 6) +
+    xlab("Weight (newtons)") + ylab("Average Friction (newtons)") + 
     ggtitle("Friction Experienced by a Weighted Wooden Block on Different Surfaces")
 
 # plot 2 (scatter, mass vs. friction, separated by surface)
-ggplot(friction, aes(x = (Actual.Weight/1000), y = Average,
+ggplot(friction, aes(x = (Actual.Weight/1000)*9.81, y = Average,
     colour = Surface)) + geom_point() + stat_smooth(method = "lm",
-    alpha = 0.1, fullrange = TRUE, se = 0.2) + xlim(0, 0.6) +
-    xlab("Mass (kilograms)") + ylab("Average Friction (newtons)") + 
+    alpha = 0.1, fullrange = TRUE, se = 0.2) + xlim(0, 6) +
+    xlab("Weight (newtons)") + ylab("Average Friction (newtons)") + 
     ggtitle("Friction Experienced by a Weighted Wooden Block on Different Surfaces") + 
     facet_wrap(~Surface) + guides(colour = FALSE)
 
